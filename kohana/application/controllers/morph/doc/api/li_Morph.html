@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title></title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+						<script src="media/lib/classTree.js"></script>
+									<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+									<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "media/images/plus.png";
+				imgMinus.src = "media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+						<h3 class="package-title">Morph</h3>
+<div class="tree">
+<script language="Javascript">
+if (document.getElementById) {
+			var tree = new WebFXTree('<span class="package">Morph</span>');
+		tree.setBehavior('classic');
+	
+		
+		var class_trees = new WebFXTreeItem('Class trees', 'classtrees_Morph.html');
+		tree.add(class_trees);
+
+		var elements = new WebFXTreeItem('Index of elements', 'elementindex_Morph.html');
+		tree.add(elements);
+
+		var parent_node;
+
+					var tree_tutorial = new WebFXTreeItem('Tutorial(s)/Manual(s)', '');
+			tree.add(tree_tutorial);
+			
+							var tree_inner_tutorial = new WebFXTreeItem('Package-level', '');
+				tree_tutorial.add(tree_inner_tutorial);
+				
+				parent_node = tree_inner_tutorial;
+										var aMorphpkgnode = new WebFXTreeItem('The Morph Package','Morph/tutorial_Morph.pkg.html', parent_node);
+
+
+										var aQueryingpkgnode = new WebFXTreeItem('Querying with Morph','Morph/tutorial_Querying.pkg.html', parent_node);
+
+
+										
+						
+					
+				    		    			var tree_classe = new WebFXTreeItem('Interface(s)', '');
+    			
+    			    			        			    			            				var classe = new WebFXTreeItem('Morph_ICompare', 'Morph/Morph_ICompare.html');
+        				tree_classe.add(classe);
+        			    			    			        			    			        			    			        			    			        			    			        			    			        			
+    			tree.add(tree_classe);
+    						    		    			var tree_classe = new WebFXTreeItem('Class(es)', '');
+    			
+    			    			            				var classe = new WebFXTreeItem('Morph_Collection', 'Morph/Morph_Collection.html');
+        				tree_classe.add(classe);
+        			    			    			        			    			            				var classe = new WebFXTreeItem('Morph_Iterator', 'Morph/Morph_Iterator.html');
+        				tree_classe.add(classe);
+        			    			    			            				var classe = new WebFXTreeItem('Morph_Object', 'Morph/Morph_Object.html');
+        				tree_classe.add(classe);
+        			    			    			            				var classe = new WebFXTreeItem('Morph_PropertySet', 'Morph/Morph_PropertySet.html');
+        				tree_classe.add(classe);
+        			    			    			            				var classe = new WebFXTreeItem('Morph_Query', 'Morph/Morph_Query.html');
+        				tree_classe.add(classe);
+        			    			    			            				var classe = new WebFXTreeItem('Morph_Storage', 'Morph/Morph_Storage.html');
+        				tree_classe.add(classe);
+        			    			    			            				var classe = new WebFXTreeItem('Morph_Utils', 'Morph/Morph_Utils.html');
+        				tree_classe.add(classe);
+        			    			    	
+    			tree.add(tree_classe);
+    				
+			
+					var tree_file = new WebFXTreeItem('File(s)', '');
+	
+							var file = new WebFXTreeItem('Collection.php', 'Morph/_Morph---Collection.php.html');
+				tree_file.add(file);
+							var file = new WebFXTreeItem('ICompare.php', 'Morph/_Morph---ICompare.php.html');
+				tree_file.add(file);
+							var file = new WebFXTreeItem('Iterator.php', 'Morph/_Morph---Iterator.php.html');
+				tree_file.add(file);
+							var file = new WebFXTreeItem('Object.php', 'Morph/_Morph---Object.php.html');
+				tree_file.add(file);
+							var file = new WebFXTreeItem('PropertySet.php', 'Morph/_Morph---PropertySet.php.html');
+				tree_file.add(file);
+							var file = new WebFXTreeItem('Query.php', 'Morph/_Morph---Query.php.html');
+				tree_file.add(file);
+							var file = new WebFXTreeItem('Storage.php', 'Morph/_Morph---Storage.php.html');
+				tree_file.add(file);
+							var file = new WebFXTreeItem('Utils.php', 'Morph/_Morph---Utils.php.html');
+				tree_file.add(file);
+				
+			tree.add(tree_file);
+		
+							var subpackagetree = new WebFXTreeItem('<span class="sub-package">Compare</span>', '');
+		
+			
+					var subpackagetree_classe = new WebFXTreeItem('Class(es)', '');
+			
+							var classe = new WebFXTreeItem('Morph_Compare_NumericProperty', 'Morph/Compare/Morph_Compare_NumericProperty.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Compare_Property', 'Morph/Compare/Morph_Compare_Property.html');
+				subpackagetree_classe.add(classe);
+						
+			subpackagetree.add(subpackagetree_classe);
+		
+				
+					var subpackagetree_file = new WebFXTreeItem('File(s)', '');
+			
+							var file = new WebFXTreeItem('NumericProperty.php', 'Morph/Compare/_Morph---Compare---NumericProperty.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('Property.php', 'Morph/Compare/_Morph---Compare---Property.php.html');
+				subpackagetree_file.add(file);
+					
+			subpackagetree.add(subpackagetree_file);
+			
+	  tree.add(subpackagetree);
+							var subpackagetree = new WebFXTreeItem('<span class="sub-package">Property</span>', '');
+		
+			
+					var subpackagetree_classe = new WebFXTreeItem('Class(es)', '');
+			
+							var classe = new WebFXTreeItem('Morph_Property_ComposeMany', 'Morph/Property/Morph_Property_ComposeMany.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_ComposeOne', 'Morph/Property/Morph_Property_ComposeOne.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_Date', 'Morph/Property/Morph_Property_Date.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_Enum', 'Morph/Property/Morph_Property_Enum.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_File', 'Morph/Property/Morph_Property_File.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_Float', 'Morph/Property/Morph_Property_Float.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_Generic', 'Morph/Property/Morph_Property_Generic.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_HasMany', 'Morph/Property/Morph_Property_HasMany.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_HasOne', 'Morph/Property/Morph_Property_HasOne.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_Integer', 'Morph/Property/Morph_Property_Integer.html');
+				subpackagetree_classe.add(classe);
+							var classe = new WebFXTreeItem('Morph_Property_String', 'Morph/Property/Morph_Property_String.html');
+				subpackagetree_classe.add(classe);
+						
+			subpackagetree.add(subpackagetree_classe);
+		
+				
+					var subpackagetree_file = new WebFXTreeItem('File(s)', '');
+			
+							var file = new WebFXTreeItem('ComposeMany.php', 'Morph/Property/_Morph---Property---ComposeMany.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('ComposeOne.php', 'Morph/Property/_Morph---Property---ComposeOne.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('Date.php', 'Morph/Property/_Morph---Property---Date.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('Enum.php', 'Morph/Property/_Morph---Property---Enum.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('File.php', 'Morph/Property/_Morph---Property---File.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('Float.php', 'Morph/Property/_Morph---Property---Float.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('Generic.php', 'Morph/Property/_Morph---Property---Generic.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('HasMany.php', 'Morph/Property/_Morph---Property---HasMany.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('HasOne.php', 'Morph/Property/_Morph---Property---HasOne.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('Integer.php', 'Morph/Property/_Morph---Property---Integer.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('String.php', 'Morph/Property/_Morph---Property---String.php.html');
+				subpackagetree_file.add(file);
+					
+			subpackagetree.add(subpackagetree_file);
+			
+	  tree.add(subpackagetree);
+							var subpackagetree = new WebFXTreeItem('<span class="sub-package">Query</span>', '');
+		
+			
+					var subpackagetree_classe = new WebFXTreeItem('Class(es)', '');
+			
+							var classe = new WebFXTreeItem('Morph_Query_Property', 'Morph/Query/Morph_Query_Property.html');
+				subpackagetree_classe.add(classe);
+						
+			subpackagetree.add(subpackagetree_classe);
+		
+				
+					var subpackagetree_file = new WebFXTreeItem('File(s)', '');
+			
+							var file = new WebFXTreeItem('Property.php', 'Morph/Query/_Morph---Query---Property.php.html');
+				subpackagetree_file.add(file);
+					
+			subpackagetree.add(subpackagetree_file);
+			
+	  tree.add(subpackagetree);
+	
+document.write(tree);
+}
+</script>
+</div>
+<p class="notes">
+	Generated by 
+	<a href="http://www.phpdoc.org" target="_blank">phpDocumentor <span class="field">1.4.2</span></a>
+</p>
+</body>
+</html>

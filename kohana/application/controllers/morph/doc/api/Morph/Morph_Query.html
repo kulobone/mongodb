@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class Morph_Query</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Morph_Query</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A query class to represent queries to the database</p>
+<p class="description"><p>This class provides a uber fluent interface so you can do  cool stuff like:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$query&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Morph_Query.html">Morph_Query</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$query</span><span class="src-sym">-&gt;</span><a href="../Morph/Morph_Query.html#methodlimit">limit</a><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><a href="../Morph/Morph_Query.html#methodproperty">property</a><span class="src-sym">(</span><span class="src-str">'name'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">equals</span><span class="src-sym">(</span><span class="src-str">'jon'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><a href="../Morph/Morph_Query.html#methodproperty">property</a><span class="src-sym">(</span><span class="src-str">'age'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">greaterThanOrEqualTo</span><span class="src-sym">(</span><span class="src-str">'30'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">lessThan</span><span class="src-sym">(</span><span class="src-str">'40'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$results&nbsp;</span>=&nbsp;<span class="src-var">$MorphStorage</span><span class="src-sym">-&gt;</span><span class="src-id">findByQuery</span><span class="src-sym">(</span><span class="src-var">$anObject</span><span class="src-sym">,&nbsp;</span><span class="src-var">$query</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>The above example is roughly eqivalent to the SQL query:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-id">SELECT&nbsp;</span>*&nbsp;<span class="src-id">FROM&nbsp;</span>`<span class="src-var">$anObject</span><span class="src-sym">-&gt;</span><span class="src-id">collection</span>()`&nbsp;<span class="src-id">WHERE</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`name`&nbsp;=&nbsp;<span class="src-str">'jon'</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">AND&nbsp;</span>`age`&nbsp;&gt;=&nbsp;<span class="src-num">30</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">AND&nbsp;</span>`age`&nbsp;&lt;&nbsp;&nbsp;<span class="src-num">40</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">LIMIT&nbsp;</span><span class="src-num">10</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Yeah, it looks like more code but with autocomplete it is super  fast to type in!</p></p>
+		<p class="notes">
+			Located in <a class="field" href="_Morph---Query.php.html">/Morph/Query.php</a> (line <span class="field"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a44">44</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																						
+				<div class="method-definition">
+											<span class="method-result"><a href="../Morph/Morph_Query.html">Morph_Query</a></span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getLimit" title="details" class="method-name">getLimit</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getRawQuery" title="details" class="method-name">getRawQuery</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getSkip" title="details" class="method-name">getSkip</a>
+										()
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../Morph/Morph_Query.html">Morph_Query</a></span>
+										<a href="#limit" title="details" class="method-name">limit</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$limit</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../Morph/Query/Morph_Query_Property.html">Morph_Query_Property</a></span>
+										<a href="#property" title="details" class="method-name">property</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$propertyName</span>)
+									</div>
+														
+				<div class="method-definition">
+											<span class="method-result"><a href="../Morph/Morph_Query.html">Morph_Query</a></span>
+										<a href="#skip" title="details" class="method-name">skip</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$numberToSkip</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a68">68</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates a new Morph query object</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Morph/Morph_Query.html">Morph_Query</a></span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetLimit" id="getLimit"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getLimit</span> (line <span class="line-number"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a92">92</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the limit</p>
+<p class="description"><p>or null if no limit has been set</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getLimit
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetRawQuery" id="getRawQuery"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRawQuery</span> (line <span class="line-number"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a141">141</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a query suitable for passing to MongoDB</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getRawQuery
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetSkip" id="getSkip"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSkip</span> (line <span class="line-number"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a116">116</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the number to skip</p>
+<p class="description"><p>Or null if skip has not been set</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getSkip
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodlimit" id="limit"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">limit</span> (line <span class="line-number"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a79">79</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the maximum number of results to return</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Morph/Morph_Query.html">Morph_Query</a></span>
+		<span class="method-name">
+			limit
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$limit</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$limit</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodproperty" id="property"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">property</span> (line <span class="line-number"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a127">127</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">adds a new property criteria</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Morph/Query/Morph_Query_Property.html">Morph_Query_Property</a></span>
+		<span class="method-name">
+			property
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$propertyName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$propertyName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodskip" id="skip"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">skip</span> (line <span class="line-number"><a href="../__filesource/fsource_Morph__MorphQuery.php.html#a103">103</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the number of results to skip</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Morph/Morph_Query.html">Morph_Query</a></span>
+		<span class="method-name">
+			skip
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$numberToSkip</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$numberToSkip</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sun, 20 Sep 2009 20:05:39 +1000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>

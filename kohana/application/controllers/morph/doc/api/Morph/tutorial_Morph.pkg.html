@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>The Morph Package</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+	<table class="tutorial-nav-box">
+	<tr>
+		<td style="width: 30%">
+							<span class="nav-button-disabled">Previous</span>
+					</td>
+		<td style="text-align: center">
+					</td>
+		<td style="text-align: right; width: 30%">
+							<a href="../Morph/tutorial_Querying.pkg.html" class="nav-button">Next</a>
+					</td>
+	</tr>
+	<tr>
+		<td style="width: 30%">
+					</td>
+		<td style="text-align: center">
+					</td>
+		<td style="text-align: right; width: 30%">
+							<span class="detail">Querying with Morph</span>
+					</td>
+	</tr>
+</table>
+	
+<div><a name=""></a><div class="ref-title-box"><h1 class="ref-title">The Morph Package</h1>
+		<h2 class="ref-purpose">An introductory tutorial to Morph</h2></div>
+
+	<div class="ref-synopsis"><span class="author"><div class="author-blurb"><a href="mailto:jonathan.moss@tangentlabs.co.uk">Jonathan
+				Moss</a></div></span>
+		<p>The Morph package provides a high level framework for working
+			with
+			MongoDB. It
+			provides an infrastructure to translate seemlessly
+			between hierarchies of PHP
+			objects and <a href="http://www.mongodb.org
+			MongoDB">http://www.mongodb.org
+			MongoDB</a>.</p></div>
+	<h1 class="title">Table of Contents</h1>
+<ul class="toc">
+	
+			
+					<li><a href="../Morph/tutorial_Morph.pkg.html#intro">Overview</a></li>
+					
+					<li><a href="../Morph/tutorial_Morph.pkg.html#basic_usage">Basic Usage</a></li>
+					
+				  				<ul class="toc">
+					<li><a href="../Morph/tutorial_Morph.pkg.html#basic_usage.basic_usage_morph_object">Morph_Object</a></li>
+						
+					
+					<li><a href="../Morph/tutorial_Morph.pkg.html#basic_usage.basic_usage_storage">Storage &amp; Retrieval</a></li>
+						</ul>
+		</ul>
+
+	<span><a name="intro"></a><h2 class="title">Overview</h2><p>This package comprises a suite of objects and object primitives
+			that are
+			designed
+			to make working with <a href="http://www.mongodb.org
+			MongoDB">http://www.mongodb.org
+			MongoDB</a> in PHP a
+			breeze.</p>
+		<p>With Morph, working with <a href="http://www.mongodb.org">MongoDB</a>
+			is no more
+			difficult
+			that working with object oriented PHP.</p></span>
+
+	<span><a name="basic_usage"></a><h2 class="title">Basic Usage</h2><p>In the following section we go over the basics of Morph. How we create objects
+		  suitable for storage in <a href="http://www.mongodb.org">MongoDB</a> and how we
+		  can store and retrieve those object.</p>
+		<span><a name="basic_usage.basic_usage_morph_object"></a><h3 class="title">Morph_Object</h3><p>Morph_Object provides a flexible base for defining object hierarchies which can
+				be
+				stored in <a href="http://www.mongodb.org">MongoDB</a>.</p>
+			<p><div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;An&nbsp;example&nbsp;Morph_Object&nbsp;derived&nbsp;class</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@property&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc-var">$userName&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@property&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc-var">$firstName&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@property&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc-var">$lastName&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@property&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc-var">$dateOfBirth&nbsp;</span></div></li>
+<li><div class="src-line"><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><span class="src-key">class&nbsp;</span><span class="src-id">User&nbsp;</span><span class="src-key">extends&nbsp;</span><a href="../Morph/Morph_Object.html">Morph_Object</a></div></li>
+<li><div class="src-line"><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><span class="src-id">__construct</span><span class="src-sym">(</span><span class="src-var">$id&nbsp;</span>=&nbsp;<span class="src-id">null</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">parent</span><span class="src-sym">::</span><span class="src-id">__construct</span><span class="src-sym">(</span><span class="src-var">$id</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">addProperty</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Property/Morph_Property_String.html">Morph_Property_String</a></span><span class="src-sym">(</span><span class="src-str">'userName'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">addProperty</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Property/Morph_Property_String.html">Morph_Property_String</a></span><span class="src-sym">(</span><span class="src-str">'firstName'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">addProperty</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Property/Morph_Property_String.html">Morph_Property_String</a></span><span class="src-sym">(</span><span class="src-str">'lastName'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">addProperty</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Property/Morph_Property_Date.html">Morph_Property_Date</a></span><span class="src-sym">(</span><span class="src-str">'dateOfBirth'</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">-&gt;</span><span class="src-id">addProperty</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Property/Morph_Property_Integer.html">Morph_Property_Integer</a></span><span class="src-sym">(</span><span class="src-str">'numberOfPosts'</span><span class="src-sym">,&nbsp;</span><span class="src-num">0</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><span class="src-php">?&gt;</span></div></li>
+</ol></div>
+
+				The example above show all you really need to know to start building
+				php objects that can be stored in <a href="http://www.mongodb.org
+				MongoDB">http://www.mongodb.org
+				MongoDB</a>.
+				As you can see the only real requirements are that you extend
+				Morph_Object
+				and the the properties you wish to store as part of the object are
+				added
+				using the Morph_Object::addProperty().</p></span>
+		<span><a name="basic_usage.basic_usage_storage"></a><h3 class="title">Storage &amp; Retrieval</h3><p>The next step in our journey is how to store and retrieve
+				object from the database. For this we need to use the
+				Morph_Storage object which represents our interface to the
+				database</p>
+			<p>The following example illustrates how you can store an object
+			    in the database
+				<div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-comm">//Create&nbsp;and&nbsp;instance&nbsp;of&nbsp;Morph_Storage&nbsp;passing&nbsp;in&nbsp;the&nbsp;appropriate&nbsp;database</span></div></li>
+<li><div class="src-line"><span class="src-var">$mongo&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id">Mongo</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$storage&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Morph_Storage.html">Morph_Storage</a></span><span class="src-sym">(</span><span class="src-var">$mongo</span><span class="src-sym">-&gt;</span><span class="src-id">selectDb</span><span class="src-sym">(</span><span class="src-str">'myDB'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-comm">//Create&nbsp;and&nbsp;instance&nbsp;of&nbsp;our&nbsp;user&nbsp;class</span></div></li>
+<li><div class="src-line"><span class="src-var">$user&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id">User</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$user</span><span class="src-sym">-&gt;</span><span class="src-id">firsName&nbsp;</span>=&nbsp;<span class="src-str">'Jonathan'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$user</span><span class="src-sym">-&gt;</span><span class="src-id">lastName&nbsp;</span>=&nbsp;<span class="src-str">'Moss'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$user</span><span class="src-sym">-&gt;</span><span class="src-id">userName&nbsp;</span>=&nbsp;<span class="src-str">'j.d.moss'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$user</span><span class="src-sym">-&gt;</span><span class="src-id">dateOfBirth&nbsp;</span>=&nbsp;<a href="http://www.php.net/strtotime">strtotime</a><span class="src-sym">(</span><span class="src-str">'1978-09-12'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-comm">//Store&nbsp;that&nbsp;baby!</span></div></li>
+<li><div class="src-line"><span class="src-var">$storage</span><span class="src-sym">-&gt;</span><span class="src-id">save</span><span class="src-sym">(</span><span class="src-var">$user</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-php">?&gt;</span></div></li>
+</ol></div></p>
+			<p>This example shows that how we can get an object back from the database
+			    by it's id
+				<div class="src-code"><ol><li><div class="src-line"><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-comm">//Create&nbsp;and&nbsp;instance&nbsp;of&nbsp;Morph_Storage&nbsp;passing&nbsp;in&nbsp;the&nbsp;appropriate&nbsp;database</span></div></li>
+<li><div class="src-line"><span class="src-var">$mongo&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id">Mongo</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$storage&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../Morph/Morph_Storage.html">Morph_Storage</a></span><span class="src-sym">(</span><span class="src-var">$mongo</span><span class="src-sym">-&gt;</span><span class="src-id">selectDb</span><span class="src-sym">(</span><span class="src-str">'myDB'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-comm">//Fetches&nbsp;and&nbsp;instance&nbsp;of&nbsp;User&nbsp;by&nbsp;its&nbsp;id</span></div></li>
+<li><div class="src-line"><span class="src-var">$user&nbsp;</span>=&nbsp;<span class="src-var">$storage</span><span class="src-sym">-&gt;</span><span class="src-id">fetchById</span><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id">User</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-num">1234</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line"><span class="src-comm">//do&nbsp;something&nbsp;with&nbsp;it's&nbsp;properties</span></div></li>
+<li><div class="src-line">echo&nbsp;<span class="src-var">$user</span><span class="src-sym">-&gt;</span><span class="src-id">firstName</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-php">?&gt;</span></div></li>
+</ol></div></p></span></span></div>
+
+	<table class="tutorial-nav-box">
+	<tr>
+		<td style="width: 30%">
+							<span class="nav-button-disabled">Previous</span>
+					</td>
+		<td style="text-align: center">
+					</td>
+		<td style="text-align: right; width: 30%">
+							<a href="../Morph/tutorial_Querying.pkg.html" class="nav-button">Next</a>
+					</td>
+	</tr>
+	<tr>
+		<td style="width: 30%">
+					</td>
+		<td style="text-align: center">
+					</td>
+		<td style="text-align: right; width: 30%">
+							<span class="detail">Querying with Morph</span>
+					</td>
+	</tr>
+</table>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Sun, 20 Sep 2009 20:05:29 +1000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>
